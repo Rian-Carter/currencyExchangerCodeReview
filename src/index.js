@@ -8,10 +8,11 @@ function getElements(response, userInput, selectedExchange) {
   if (response) {
     // console.log(response);
     const convertedUSD = (response.conversion_rate * userInput).toFixed(2);
-    console.log(convertedUSD);
-    $('.show-converted').append(`USD is woth ${convertedUSD} in ${selectedExchange}.`);
+    // console.log(convertedUSD);
+    // console.log(selectedExchange);
+    $('#show-converted').append(`USD is worth ${convertedUSD} in ${selectedExchange}.<br>`);
   } else {
-    $(`.show-errors`).text(`There was an error: ${response}`);
+    $(`#show-errors`).text(`There was an error: ${response}`);
   }
 }
 
@@ -25,7 +26,7 @@ $(document).ready(function() {
   $('#displayExchangeRate').click(function() {
     let currency = parseInt($('#currency').val());
     let selectExchange = $('#selectExchange').val();
-    // console.log(selectExchange);
+    console.log(selectExchange);
     makeApiCall(selectExchange, currency, selectExchange);
   });
 });
