@@ -18,6 +18,8 @@ function getElements(response, userInput, selectedExchange) {
     $('#show-converted').append(`USD is worth ${convertedUSD} in ${selectedExchange}.<br>`);
   } else {
     $(`#show-errors`).text(`There was an error: ${response}`);
+    $('#show-errors').text(`There was an error: Please select a real currency`);
+
   }
 }
 
