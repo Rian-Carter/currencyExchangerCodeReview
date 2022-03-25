@@ -19,3 +19,10 @@ async function makeApiCall(selectedCurrency, userInput) {
   getElements(response, userInput);
 }
 
+$(document).ready(function() {
+  $('#displayResults').click(function() {
+    let currency = parseInt($('#currency').val());
+    let exchangedCurrency = $('#exchangedCurrency').val();
+    makeApiCall(exchangedCurrency, currency, exchangedCurrency);
+  })
+})
