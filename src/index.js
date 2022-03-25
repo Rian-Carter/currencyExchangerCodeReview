@@ -12,3 +12,10 @@ function getElements(response, userInput, selectedCurrency) {
     $(`.showErrors`).text(`There was an error: ${response}`);
   }
 }
+
+async function makeApiCall(selectedCurrency, userInput) {
+  const response = await CurrencyExchange.exchangeCurrency(selectedCurrency);
+  console.log(response);
+  getElements(response, userInput);
+}
+
