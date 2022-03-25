@@ -1,28 +1,31 @@
 import $ from 'jquery';
 import 'bootstrap';
-import 'bootstrap/css/bootstrap.min.css';
-import './css/styles/css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import './css/styles.css';
 import CurrencyExchange from './../src/js/currencyExchange.js';
 
-function getElements(response, userInput, selectedCurrency) {
+function getElements(response, userInput, selectedExchange) {
   if (response) {
-    const convertUSD = (response.conversion_rate * userInput).toFixed(2);
-    $('.showConverted').append(`USD is woth ${convertUSD} in ${selectedCurrency}.`);
+    // console.log(response);
+    const convertedUSD = (response.conversion_rate * userInput).toFixed(2);
+    console.log(convertedUSD);
+    $('.show-converted').append(`USD is woth ${convertedUSD} in ${selectedExchange}.`);
   } else {
-    $(`.showErrors`).text(`There was an error: ${response}`);
+    $(`.show-errors`).text(`There was an error: ${response}`);
   }
 }
 
-async function makeApiCall(selectedCurrency, userInput) {
+async function makeApiCall(selectedCurrency, userInput, selectedExchange) {
   const response = await CurrencyExchange.exchangeCurrency(selectedCurrency);
-  console.log(response);
-  getElements(response, userInput);
+  // console.log(response);
+  getElements(response, userInput, selectedExchange);
 }
 
 $(document).ready(function() {
-  $('#displayResults').click(function() {
+  $('#displayExchangeRate').click(function() {
     let currency = parseInt($('#currency').val());
-    let exchangedCurrency = $('#exchangedCurrency').val();
-    makeApiCall(exchangedCurrency, currency, exchangedCurrency);
-  })
-})
+    let selectExchange = $('#selectExchange').val();
+    // console.log(selectExchange);
+    makeApiCall(selectExchange, currency, selectExchange);
+  });
+});
