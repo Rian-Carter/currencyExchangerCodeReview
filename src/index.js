@@ -36,5 +36,6 @@ $(document).ready(function() {
     console.log(selectExchange);
     clearFields();
     makeApiCall(selectExchange, currency, selectExchange);
+    $('#bigMoney').show();
   });
 });
