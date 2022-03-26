@@ -31,6 +31,7 @@ $(document).ready(function() {
     let selectExchange = $('#selectExchange').val();
     clearFields();
     makeApiCall(selectExchange, currency, selectExchange);
-    $('#bigMoney').show();
+    $('#show-results').show();
+    $('#show-errors').show();
   });
 });
