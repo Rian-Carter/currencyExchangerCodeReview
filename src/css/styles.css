@@ -43,7 +43,7 @@ body {
   font-size: 32px;
 }
 
-#bigMoney {
+#show-results {
   display: none;
   image-orientation: inherit;
   margin-left: auto;
