@@ -11,11 +11,8 @@ function clearFields() {
 
 function getElements(response, userInput, selectedExchange) {
   if (response) {
-    // console.log(response);
     const convertedUSD = (response.conversion_rate * userInput).toFixed(2);
-    // console.log(convertedUSD);
-    // console.log(selectedExchange);
-    $('#show-converted').append(`USD is worth ${convertedUSD} in ${selectedExchange}.<br>`);
+    $('#show-converted').append(`USD is worth ${convertedUSD} ${selectedExchange}.<br>`);
   } else {
     $(`#show-errors`).text(`There was an error: ${response}`);
     $('#show-errors').text(`There was an error: Please select a real currency`);
@@ -25,7 +22,6 @@ function getElements(response, userInput, selectedExchange) {
 
 async function makeApiCall(selectedCurrency, userInput, selectedExchange) {
   const response = await CurrencyExchange.exchangeCurrency(selectedCurrency);
-  // console.log(response);
   getElements(response, userInput, selectedExchange);
 }
 
@@ -33,7 +29,6 @@ $(document).ready(function() {
   $('#displayExchangeRate').click(function() {
     let currency = parseInt($('#currency').val());
     let selectExchange = $('#selectExchange').val();
-    console.log(selectExchange);
     clearFields();
     makeApiCall(selectExchange, currency, selectExchange);
     $('#bigMoney').show();
