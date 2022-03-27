@@ -20,7 +20,6 @@
 
 * Clone this project using $ git clone https://github.com/Rian-Carter/currencyExchangerCodeReview
 * Make sure you have Node js installed
-* Run command $ npm install to install all dependencies.
 * Create a .env file
 * To obtain an API key navigate to https://www.exchangerate-api.com/ and click the "Get Free Key" at the top of the page and follow the instructions.
 * Add the following to your .env file: API_KEY="insert your API key here" ex. API_KEY=123456789
