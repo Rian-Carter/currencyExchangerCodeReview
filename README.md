@@ -24,7 +24,8 @@
 * Create a .env file
 * To obtain an API key navigate to https://www.exchangerate-api.com/ and click the "Get Free Key" at the top of the page and follow the instructions.
 * Add the following to your .env file: API_KEY="insert your API key here" ex. API_KEY=123456789
-* Run the command $ npm run build.
+* Run the command $ npm install
+* Run the command $ npm run build
 * Run the command $ npm run start to launch the project in your browser.
 * This application was built on a Windows Machine. For it to work properly on a Mac, change the following:
 * Update package.json, line 8 to "npm run build; webpack-dev-server --open --mode=development"
