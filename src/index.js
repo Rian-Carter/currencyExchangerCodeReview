@@ -6,31 +6,32 @@ import CurrencyExchange from './../src/js/currencyExchange.js';
 
 function clearFields() {
   $('#show-converted').text("");
-  $('#show-errors').val("");
+  $('#show-errors').hide();
 }
 
-function getElements(response, userInput, selectedExchange) {
+function getElements(response, userInput, convertedCurrency, startingCurrency) {
   if (response) {
-    const convertedUSD = (response.conversion_rate * userInput).toFixed(2);
-    $('#show-converted').append(`USD is worth ${convertedUSD} ${selectedExchange}.<br>`);
+    const amount = (response.conversion_rate * userInput).toFixed(2);
+    $('#show-converted').append(`Your ${startingCurrency} is worth ${amount} ${convertedCurrency}.<br>`);
+    $('#show-errors').text("");
   } else {
     $(`#show-errors`).text(`There was an error: ${response}`);
     $('#show-errors').text(`There was an error: Please select a real currency`);
-
   }
 }
 
-async function makeApiCall(selectedCurrency, userInput, selectedExchange) {
-  const response = await CurrencyExchange.exchangeCurrency(selectedCurrency);
-  getElements(response, userInput, selectedExchange);
+async function makeApiCall(startingCurrency, userInput, convertedCurrency) {
+  const response = await CurrencyExchange.exchangeCurrency(startingCurrency, convertedCurrency);
+  getElements(response, userInput, convertedCurrency, startingCurrency);
 }
 
 $(document).ready(function() {
   $('#displayExchangeRate').click(function() {
-    let currency = parseInt($('#currency').val());
-    let selectExchange = $('#selectExchange').val();
+    let amount = parseInt($('#currency').val());
+    let convertedCurrency = $('#selectExchange').val();
+    let startingCurrency = $('#startingCurrency').val();
+    makeApiCall(startingCurrency, amount, convertedCurrency);
     clearFields();
-    makeApiCall(selectExchange, currency, selectExchange);
     $('#show-results').show();
     $('#show-errors').show();
   });
